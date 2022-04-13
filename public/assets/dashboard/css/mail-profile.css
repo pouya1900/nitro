@@ -1,0 +1,418 @@
+/*
+##########################################
+   Style sheet for Mail box
+##########################################
+*/
+
+/* base */
+body.mail {
+  height:100vh;
+  overflow: hidden;
+}
+
+
+/* layout */
+.mailbox > div {
+  position: relative;
+  float: right;
+  height: 100%;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  overflow-y: auto;
+  right: -1px;
+}
+#nav {
+  float: right;
+  width: 5%;
+}
+#tab-list {
+  width: 35%;
+}
+#content_load {
+  width: 60%;
+  border-right-color: transparent;
+}
+
+
+/* Vertical nav */
+#nav li {
+  position: relative;
+  width: 100%;
+  border: 1px solid #ddd;
+  background: #fff;
+  margin-bottom: -2px;
+  box-shadow: inset -1px 0 1px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+#nav li a {    
+  display: block;
+  padding: 8px 3px;
+  font-size: 20px;
+  color: #555;
+  text-align: center;
+}
+
+#nav li a.active {
+  background: #42C0FB;
+  color: #fff;
+}
+
+#nav li a:hover {
+  border-right: 3px solid #42C0FB; 
+  padding-right: 0px;
+}
+
+#nav .tooltip-inner {
+  padding: 5px 10px;
+  background: #fff;
+  color: #303;
+  font-size: 15px;
+  font-weight: bold;
+  border: 1px solid #000;
+}
+#nav .gap {
+  margin-top: 10px;
+}
+
+
+
+/* List of Emails (first column) */
+#tab-list .list-header {
+  font-size: 20px;
+  padding: 0 10px 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #555;
+}
+#tab-list .list-header i {
+  padding: 5px 15px 0 0;
+  cursor: pointer;
+  float: left;
+  color: #555;
+}
+#tab-list .media-body {
+  font-size: 14px;
+}
+#tab-list .checked:after {
+  content: "\f046";
+  position: absolute;
+  font: 18px FontAwesome;
+  top: 0px;
+}
+
+#archive_tree span, #tab-list .media-body {
+  cursor: pointer;
+}
+
+
+
+
+/* contact load (second column) */ 
+#content_load small {
+  font-size: 80%;
+}
+#content_load h3 {
+  margin-top: 0;
+}
+#content_load .contact-title h3 {
+  border-bottom: 1px solid #9b9;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+
+
+/* Show mail */
+.email .mail-head {
+  padding: 10px;
+  border-radius: 5px;
+}
+.email .mail-head p {
+  line-height: 1.1em;
+}
+.email .mail-head .buttons button {
+  width: 50px;
+  margin-top: 3px;
+  background: transparent;
+  border: none;
+}
+
+.email .mail-head .from:hover + .popover {
+  margin: 25px 20px;
+  display: block !important;
+}
+
+.email .mail-body {
+  padding: 20px 10px;
+}
+.email .mail-body p {
+  min-height: 12px;
+  font-size: 14px;
+  line-height: 1.1em;
+  margin-bottom: 5px;
+}
+
+
+
+
+/* Responsive */
+@media (max-width: 767px) {
+  body.mail {
+    overflow: auto;
+  }
+  .breadcrumb-col {
+    display: none;
+  }
+
+  .mailbox {
+    margin-left: -15px;
+    margin-right: -10px;
+  }
+  .mailbox > div {
+    height: auto;
+  }
+  #nav {
+    width: 15%;
+  }
+  #tab-list {
+    width: 85%;
+    height: 366px;
+  }
+  #content_load {
+    width: 100%;
+    margin-bottom: 10px;
+    border-right-color: #ddd;
+  }
+  .list-group .media .media-left {
+    display: block;
+  }
+  .list-header i {
+    display: none;
+  }
+}
+
+
+/*
+##########################################
+   Style sheet for User profile
+##########################################
+*/
+
+.nav-sidebar-tab a {
+  border-top: 1px solid rgba(0,0,0,0.2);
+}
+.nav-sidebar-tab .active a,
+.nav-sidebar-tab .active a:hover, 
+.nav-sidebar-tab .active a:focus { 
+  background: #25b;
+  color: #fff;
+  border-top: none;
+}
+
+.profie-avatar {
+  text-align: center;
+  padding: 15px 0 10px;
+  font-size: 18px;
+}
+.profie-avatar img {
+  max-width: 150px;
+  border-radius: 100%;
+}
+
+.second-nav {
+  font-size: 14px;
+}
+
+.user-profile-content {
+  padding-right: 0px;
+  margin-bottom: 20px;
+}
+.user-profile-content .tab-content {
+  padding-top: 0px;
+}
+
+.first-table-row td {
+  border-top: none !important;
+}
+
+
+
+
+
+/* ================ The Timeline ================ */
+
+.timeline {
+  position: relative;
+  width: 650px;
+  margin: 20px auto;
+  padding: 1em 0;
+  list-style-type: none;
+}
+
+.timeline:before {
+  position: absolute;
+  right: 50%;
+  top: 0;
+  content: ' ';
+  width: 6px;
+  height: 100%;
+  margin-right: -3px;
+  background: linear-gradient(#fff 0%, #777 8%, #777 92%, #fff 100%);
+}
+
+.timeline li {
+  padding: 2em 0;
+  display: block;
+  clear: both;
+}
+
+.direction-l {
+  position: relative;
+  width: 300px;
+  float: right;
+  text-align: left;
+}
+
+.direction-r {
+  position: relative;
+  width: 300px;
+  float: left;
+}
+
+.flag-wrapper {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.flag {
+  position: relative;
+  display: inline;
+  background: rgb(248,248,248);
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-weight: 600;
+  text-align: right;
+}
+
+
+.direction-l .flag {
+  box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+}
+.direction-r .flag {
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+}
+
+
+.direction-l .flag:before,
+.direction-r .flag:before {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  margin-top: -6px;
+  background: #fff;
+  border-radius: 100%;
+  border: 4px solid #f55;
+  top: 50%;
+  left: -32px;
+}
+.direction-r .flag:before {
+  right: -32px;
+}
+
+
+.direction-r .flag:after, 
+.direction-l .flag:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 0;
+  width: 0;
+  margin-top: -8px;
+  border: solid transparent;
+  border-width: 8px;
+  pointer-events: none;
+}
+.direction-r .flag:after {
+  left: 100%;
+  border-left-color: #eee;
+}
+.direction-l .flag:after {
+  right: 100%;
+  border-right-color: #eee;
+}
+
+
+.time-wrapper {
+  font-size: 0.7em;
+  color: #d55;
+  padding: 4px 6px;
+  background: #f5f5f5;
+}
+.direction-l .time-wrapper {
+  float: right;
+}
+.direction-r .time-wrapper {
+  float: left;
+}
+
+.desc {
+  margin: 1em 0 0 0.75em;
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+
+/* ================ Timeline Media Queries ================ */
+@media screen and (max-width: 767px) {
+
+  .timeline {
+    width: 100%;
+    padding: 4em 0 1em 0;
+  }
+
+  .direction-l,
+  .direction-r {
+    float: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .direction-l .flag:before,
+  .direction-r .flag:before {
+    top: -25px;
+    right: 50%;
+    margin-right: -8px;
+  }
+
+  .direction-l .flag:after,
+  .direction-r .flag:after {
+    right: 50%;
+    top: -8px;
+    margin-right: -8px;
+    border: solid transparent;
+    border-bottom-color: #eee;
+    border-width: 8px;
+  }
+
+  .time-wrapper {
+    display: block;
+    margin-top: 4px;
+  }
+
+  .direction-r .time-wrapper, .direction-l .time-wrapper {
+    float: none;
+  }
+
+  .desc {
+    background: rgb(245,245,245);
+    -webkit-box-shadow: 0 0 1px rgba(0,0,0,0.20);
+    -moz-box-shadow: 0 0 1px rgba(0,0,0,0.20);
+    box-shadow: 0 0 1px rgba(0,0,0,0.20);
+    padding: 1em;
+    margin: 1em 1em 0 1em;
+  }
+
+}
