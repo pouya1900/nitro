@@ -1,0 +1,83 @@
+﻿<div id="pat_images">
+<li class="patt-item"><img src="img/patt/ern1.png">1</li>
+<li class="patt-item"><img src="img/patt/ern2.png">2</li>
+<li class="patt-item"><img src="img/patt/ern3.png">3</li>
+<li class="patt-item"><img src="img/patt/ern4.png">4</li>
+<li class="patt-item"><img src="img/patt/ern5.png">5</li>
+<li class="patt-item"><img src="img/patt/ern6.png">6</li>
+<li class="patt-item"><img src="img/patt/ern7.png">7</li>
+<li class="patt-item"><img src="img/patt/ern8.png">8</li>
+<li class="patt-item"><img src="img/patt/ern9.png">9</li>
+<li class="patt-item"><img src="img/patt/ern10.png">10</li>
+<li class="patt-item"><img src="img/patt/ern11.png">11</li>
+<li class="patt-item"><img src="img/patt/ern12.png">12</li>
+<li class="patt-item"><img src="img/patt/ern13.png">13</li>
+<li class="patt-item"><img src="img/patt/ern14.png">14</li>
+<li class="patt-item"><img src="img/patt/ern15.png">15</li>
+<li class="patt-item"><img src="img/patt/ern16.png">16</li>
+<li class="patt-item"><img src="img/patt/ern17.png">17</li>
+<li class="patt-item"><img src="img/patt/ern18.png">18</li>
+<li class="patt-item"><img src="img/patt/ern19.png">19</li>
+<li class="patt-item"><img src="img/patt/ern20.png">20</li>
+<li class="patt-item"><img src="img/patt/ern21.png">21</li>
+<li class="patt-item"><img src="img/patt/ern22.png">22</li>
+<li class="patt-item"><img src="img/patt/ern23.png">23</li>
+<li class="patt-item"><img src="img/patt/ern24.png">24</li>
+<li class="patt-item"><img src="img/patt/ern25.png">25</li>
+<li class="patt-item"><img src="img/patt/ern26.png">26</li>
+<li class="patt-item"><img src="img/patt/ern27.png">27</li>
+<li class="patt-item"><img src="img/patt/ern28.png">28</li>
+<li class="patt-item"><img src="img/patt/ern29.png">29</li>
+<li class="patt-item"><img src="img/patt/ern30.png">30</li>
+<li class="patt-item"><img src="img/patt/ern31.png">31</li>
+<li class="patt-item"><img src="img/patt/ern32.png">32</li>
+<li class="patt-item"><img src="img/patt/ern33.png">33</li>
+<li class="patt-item"><img src="img/patt/ern34.png">34</li>
+<li class="patt-item"><img src="img/patt/ern35.png">35</li>
+<li class="patt-item"><img src="img/patt/ern36.png">36</li>
+<li class="patt-item"><img src="img/patt/ern37.png">37</li>
+<li class="patt-item"><img src="img/patt/ern38.png">38</li>
+<li class="patt-item"><img src="img/patt/ern39.png">39</li>
+<li class="patt-item"><img src="img/patt/ern40.png">40</li>
+<li class="patt-item"><img src="img/patt/ern41.png">41</li>
+<li class="patt-item"><img src="img/patt/ern42.png">42</li>
+<li class="patt-item"><img src="img/patt/ern43.png">43</li>
+<li class="patt-item"><img src="img/patt/ern44.png">44</li>
+<li class="patt-item"><img src="img/patt/ern45.png">45</li>
+<li class="patt-item"><img src="img/patt/ern46.png">46</li>
+<li class="patt-item"><img src="img/patt/ern47.png">47</li>
+<li class="patt-item"><img src="img/patt/ern48.png" id="ern_48">48</li>
+<li class="patt-item"><img src="img/patt/ern49.png">49</li>
+<li class="patt-item"><img src="img/patt/ern50.png">50</li>
+</div>
+<script type="text/javascript">
+
+	$('#pattern_thumb .patt-item').click(function(){
+		$('#PattInput').val($(this).text());
+		$('#pattern_thumb .patt-item').removeClass('t#f00').addClass('t#000');
+		$(this).removeClass('t#000').addClass('t#f00');
+		cc_fColorClass(2);
+	});
+
+	$('#BodyBtn').click(function() {
+		var patt = $('#PattInput').val();
+		$('body').css({'background':'url(img/patt/ern'+patt+'.png) fixed'});
+	    if(!$('#box_option').prop('checked')) {
+			toastr.info('این ویژگی فقط در حالت جعبه ای کار می کند. برای رفتن به حالت جعبه ای کلید "B" را فشار دهید.');
+	    }
+	});
+
+	$('#ContentBtn').click(function() {
+		var patt = $('#PattInput').val();
+		$('#content').css({'background':'#f9f9f9 url(img/patt/ern'+patt+'.png)'});
+	});
+
+	$('.close, #PatternsModal .pull-right').click(function(){
+		setTimeout(SetPaddings, 500);
+	});
+
+	$(document).ajaxComplete(function(){
+		$("#wait").hide();
+	});
+
+</script>
