@@ -45,12 +45,7 @@ class SendKSms implements SmsServiceInterface
         $url_path = "verify/lookup.json?receptor=$mobile&token=$smsCode&template=nitrogram";
 
         $response = $this->smsApi->SendSms($url_path);
-
-
-        echo '<pre>';
-        print_r($response);
-        echo '</pre>';
-
+        
         if ($response === false) {
             throw new OtpFailedException("send otp failed");
         }

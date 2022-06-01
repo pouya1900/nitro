@@ -28,6 +28,7 @@ class User extends Authenticatable
         'mobile',
         'mobile_visibility',
         'email',
+        'balance',
         'password',
         'token',
         'role_id',
@@ -212,7 +213,7 @@ class User extends Authenticatable
      */
     public function getFullNameAttribute()
     {
-        return $this->first_name ? "{$this->first_name} {$this->last_name}" : "{$this->username}";
+        return $this->first_name . " " . $this->last_name;
     }
 
 

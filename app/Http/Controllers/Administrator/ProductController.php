@@ -101,7 +101,6 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        dd($product);
         $categories = Category::all();
 
         return view('v1.admin.pages.product.edit', compact('product', 'categories'));

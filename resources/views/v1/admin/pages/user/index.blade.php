@@ -1,4 +1,4 @@
-﻿@extends('v1.admin.layout.default')
+@extends('v1.admin.layout.default')
 @section('custom_style')
     @include('v1.admin.includes.datatable-styles')
 @endsection
@@ -43,11 +43,12 @@
                                     <thead>
                                     <tr>
                                         <th data-column-id="id" data-type="numeric">شناسه</th>
-                                        <th data-column-id="admin">شماره موبایل</th>
+                                        <th data-column-id="mobile">شماره موبایل</th>
                                         <th data-column-id="first_name">نام</th>
                                         <th data-column-id="last_name">نام خانوادگی</th>
-                                        <th data-column-id="last_name">تاریخ ثبت نام</th>
-                                        <th data-column-id="created_at">نقش</th>
+                                        <th data-column-id="created_at">تاریخ ثبت نام</th>
+                                        <th data-column-id="role">نقش</th>
+                                        <th data-column-id="order">تعداد سفارش</th>
                                         <th class="my_commands" data-column-id="commands" data-sortable="false"
                                             style="text-align: center">عملیات
                                         </th>
@@ -58,11 +59,14 @@
                                     @foreach($users as $row)
                                         <tr>
                                             <td>{{ $loop->index+1 }}</td>
-                                            <td>{{ $row->mobile ?: ''}}</td>
+                                            <td>{{ makeMobileByZero($row->mobile)}}</td>
                                             <td>{{ $row->first_name ?: ''}}</td>
                                             <td>{{ $row->last_name ?: ''}}</td>
                                             <td>{{ $row->jalali_admin_created_at}}</td>
                                             <td>{{ $row->role->title ?: ''}}</td>
+                                            <td>
+                                                <a href="{{route('admin.order.user',$row->id)}}">{{ $row->orders ? $row->orders->count() : 0}}</a>
+                                            </td>
                                             <td>
                                                 @include('v1.admin.includes.page-table-buttons',  ['table_show'=>['route' => 'admin.user.show', 'id'=>$row->id]])
 
@@ -132,7 +136,7 @@
                     break;
             }
             @endif
-                {{session()->forget('notifications')}}
+                    {{session()->forget('notifications')}}
         });
     </script>
 @endsection

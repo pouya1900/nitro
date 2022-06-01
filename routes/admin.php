@@ -25,6 +25,13 @@ Route::middleware(['adminAuth'])->group(function () {
         Route::resource('product', 'ProductController', ['except' => ['destroy']]);
     });
 
+    Route::middleware(['hasPermission:product.*'])->group(function () {
+        Route::get('order/delete/{order}', 'OrderController@doDelete')->name('order.delete');
+        Route::get('order/user/{user}', 'OrderController@userOrders')->name('order.user');
+        Route::resource('order', 'OrderController', ['except' => ['destroy']]);
+    });
+
+
     Route::middleware(['hasPermission:category.*'])->group(function () {
         Route::get('product-category/delete/{category}', 'ProductCategoryController@doDelete')->name('product-category.delete');
         Route::resource('product-category', 'ProductCategoryController', ['except' => ['destroy']]);

@@ -33,7 +33,8 @@
                                 <!-- profile -->
                                 <div class="panel">
                                     <div class="tab-pane fade in active" id="prof">
-                                        <h3 class="t#05a" style="padding-right: 20px; color: rgb(0, 85, 170);">شماره: <span>{{$order->id}}</span></h3>
+                                        <h3 class="t#05a" style="padding-right: 20px; color: rgb(0, 85, 170);">شماره:
+                                            <span>{{$order->id}}</span></h3>
 
                                         <div class="panel-body">
                                             <table class="table">
@@ -44,13 +45,14 @@
                                                 </tr>
                                                 <tr class="first-table-row">
                                                     <td>شماره سفارش:</td>
-                                                    <td>{{ $order->order_number }}</td>
+                                                    <td>{{ $order->tracking_number }}</td>
                                                 </tr>
                                                 <tr class="first-table-row">
                                                     <td>موبایل کاربر:</td>
                                                     <td>
                                                         @if(!empty($order->user))
-                                                            <a style="padding-left: 20px;" href="{{ route('admin.user.show', $order->user->id) }}">{{ $order->user->mobile }}</a>
+                                                            <a style="padding-left: 20px;"
+                                                               href="{{ route('admin.user.show', $order->user->id) }}">{{ makeMobileByZero($order->user->mobile) }}</a>
                                                         @else
                                                             کاربر حذف شده
                                                         @endif
@@ -60,51 +62,48 @@
                                                     <td>کاربر:</td>
                                                     <td>
                                                         @if(!empty($order->user))
-                                                            <a style="padding-left: 20px;" href="{{ route('admin.user.show', $order->user->id) }}">{{ $order->user->full_name }}</a>
+                                                            <a style="padding-left: 20px;"
+                                                               href="{{ route('admin.user.show', $order->user->id) }}">{{ $order->user->full_name }}</a>
                                                         @else
                                                             کاربر حذف شده
                                                         @endif
                                                     </td>
                                                 </tr>
                                                 <tr class="first-table-row">
-                                                    <td>هدیه به کاربر دیگر؟</td>
-                                                    <td>
-                                                        @if(!empty($order->giftUser))
-                                                            <a style="padding-left: 20px;" href="{{ route('admin.user.show', $order->giftUser->id) }}">{{ $order->giftUser->mobile }}</a>
-                                                        @else
-                                                            عدم هدیه
-                                                        @endif
-                                                    </td>
+                                                    <td>محصول:</td>
+                                                    <td>{{ $order->product ? $order->product->name : "حذف شده" }}</td>
                                                 </tr>
                                                 <tr class="first-table-row">
-                                                    <td>بسته موسیقی:</td>
-                                                    <td>
-                                                        @if(!empty($order->package))
-                                                            <a style="padding-left: 20px;" href="{{ route('admin.package.show', $order->package->id) }}">{{ $order->package->title }}</a>
-                                                        @else
-                                                            بسته حذف شده
-                                                        @endif
-                                                    </td>
+                                                    <td>لینک:</td>
+                                                    <td>{{ $order->link }}</td>
+                                                </tr>
+                                                <tr class="first-table-row">
+                                                    <td>تعداد:</td>
+                                                    <td>{{ $order->count }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>وضعیت سفارش:</td>
-                                                    <td>{{$order->status->title}}</td>
+                                                    <td>@if($order->status ==1)
+                                                            <span style="color: green">completed</span>
+                                                        @elseif($order->status ==-1)
+                                                            <span style="color: RED">cancelled</span>
+                                                        @else
+                                                            <span style="color: yellow">pending</span>
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>توضیحات:</td>
-                                                    <td>{{$order->status->description}}</td>
+                                                    <td>وضعیت پرداخت:</td>
+                                                    <td>@if($order->payed==1)
+                                                            <span style="color: green">payed</span>
+                                                        @else
+                                                            <span style="color: RED">not payed</span>
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 <tr class="first-table-row">
-                                                    <td>قیمت کل:</td>
-                                                    <td>{{ $order->total_price_toman }}</td>
-                                                </tr>
-                                                <tr class="first-table-row">
-                                                    <td>تخفیف:</td>
-                                                    <td>{{ $order->discount_price_toman }}</td>
-                                                </tr>
-                                                <tr class="first-table-row">
-                                                    <td>قیمت قابل پرداخت</td>
-                                                    <td>{{ $order->paid_price_toman }}</td>
+                                                    <td>قیمت:</td>
+                                                    <td>{{ $order->price }}</td>
                                                 </tr>
                                                 <tr class="first-table-row">
                                                     <td>تاریخ ایجاد:</td>
@@ -119,7 +118,11 @@
                                         </div>
                                     </div>
                                     <div class="panel-footer">
-                                        <a href="{{route('admin.order.index')}}" class="btn btn-warning" title="بازگشت" tooltip><i class="fa fa-home"></i></a>
+                                        <a href="{{route('admin.order.index')}}" class="btn btn-warning" title="بازگشت"
+                                           tooltip><i class="fa fa-home"></i></a>
+                                        <a href="{{route('admin.order.edit', $order->id)}}" class="btn btn-success"
+                                           title="ویرایش" tooltip><i class="fa fa-pencil"></i></a>
+
                                     </div>
                                 </div>
 

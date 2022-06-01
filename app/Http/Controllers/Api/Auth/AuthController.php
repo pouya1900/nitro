@@ -127,7 +127,7 @@ class AuthController extends Controller
         ]);
 
         // check if user is blocked
-        $mobile = $this->request->mobile;
+        $mobile = makeMobileWithoutZero($this->request->mobile);
         $uuid = $this->request->uuid;
 
         // plus retry time

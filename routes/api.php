@@ -23,7 +23,7 @@ Route::group(['prefix' => '/orders', 'namespace' => 'Order'], function () {
     Route::get('/', 'OrderController@index')->middleware(['jwtAuth']);
 });
 
-Route::group(['prefix' => '/home', 'namespace' => 'Home'], function () {
+Route::group(['prefix' => '/dashboard', 'namespace' => 'Home'], function () {
 
     Route::get('/', 'HomeController@index')->middleware(['jwtAuth']);
 });
@@ -47,8 +47,8 @@ Route::group(['middleware' => ['jwtAuth']], function () {
 });
 
 
-Route::group(['prefix' => '/payment', 'namespace' => 'Payment'], function () {
-    Route::get('/index', 'PaymentController@index')->middleware(['jwtAuth']);
+Route::group(['prefix' => '/payments', 'namespace' => 'Payment'], function () {
+    Route::get('/', 'PaymentController@index')->middleware(['jwtAuth']);
     Route::get('/new', 'PaymentController@new')->middleware(['jwtAuth']);
-    Route::get('/verify/{payment}', 'PaymentController@verify')->middleware(['jwtAuth'])->name('payment.verify');
+    Route::get('/verify/{gate_way}/{payment}', 'PaymentController@verify')->middleware(['jwtAuth'])->name('payment.verify');
 });

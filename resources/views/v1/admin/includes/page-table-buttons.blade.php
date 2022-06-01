@@ -61,8 +61,12 @@
 @endif
 
 @if(isset($table_delete))
-    <a href="{{route($table_delete['route'],$table_delete['id'])}}" popover=""
+    <a  popover="" data-toggle="modal" data-target="#table-deleteModal"
        data-placement="top" data-trigger="hover" data-content="حذف"><i class="fa fa-close"></i></a>
+
+    @include('v1.admin.includes.modals', ['delete' => ['route' => $table_delete['route'], 'id' => $table_delete['id']]])
+
+
 @endif
 
 {{--@if(isset($table_active))--}}

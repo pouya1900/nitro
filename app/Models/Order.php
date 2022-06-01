@@ -19,6 +19,11 @@ class Order extends Model
     protected $guarded = [
     ];
 
+    public static $rules = [
+        'link'  => 'required',
+        'count' => 'required|integer',
+    ];
+
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');

@@ -19,9 +19,9 @@ class Payment
         return $this->payment->payRequest($user, $amount, $callbackUrl);
     }
 
-    public function payVerify(string $token, int $amount)
+    public function payVerify(array $data)
     {
-        return $this->payment->payVerify($token, $amount);
+        return $this->payment->payVerify($data);
 
     }
 

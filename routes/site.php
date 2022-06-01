@@ -1,6 +1,6 @@
 <?php
 // menu section
-Route::get('/', 'HomeController@getHomePage')->name('index');
+Route::get('/', 'HomeController@index')->name('index');
 Route::get('about-us', 'HomeController@getAboutUs')->name('about-us');
 Route::get('faq', 'HomeController@getFaq')->name('faq');
 Route::get('terms', 'HomeController@getTerms')->name('terms');

@@ -1,6 +1,6 @@
 /* font family */
 .fa {
-  font-family: 'FontAwesome', 'DroidNaskh' !important;
+  font-family: 'FontAwesome', 'BYekan' !important;
 }
 body,
 .Ubuntu-font, #cssmenu, .side-task, .chat-tower, .btn.td, header,
@@ -25,18 +25,18 @@ body,
 .lity-loader,
 .tooltip,
 .popover {
-  font-family: 'DroidNaskh';
+  font-family: 'BYekan';
 }
 #acc1 li .shown, #user_message .chat-info span, .chat-line abbr, .chat-info small {color:white}
 .panel-heading, .breadcrumb > li , #acc1 li .shown, #first-navbar .navbar-nav > li > a,
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'DroidKufi' !important;
+	font-family: 'BYekan' !important;
 	font-style: normal;
 	font-weight: 400;
 }
 @media all {
     .featherlight .featherlight-close-icon {
-        font-family: 'DroidNaskh' !important;
+        font-family: 'BYekan' !important;
     }
 }
 body {direction:rtl !important;overflow-x:hidden;}

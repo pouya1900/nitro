@@ -23,7 +23,7 @@ class OrderResource extends JsonResource
             'title'          => $this->product->name,
             'description'    => $this->product->description ?? '',
             'categoryType'   => $this->product->category_type,
-            'categoryTitle'  => $this->product->category->title,
+            'categoryTitle'  => $this->product->category ? $this->product->category->title : null,
             'price'          => $this->price,
             'count'          => $this->count,
             'status'         => $this->status ?? 0,

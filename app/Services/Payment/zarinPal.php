@@ -10,10 +10,12 @@ class zarinPal implements PaymentInterface
     private $merchantId;
     private $portalDescription;
     private $base;
+    private $payment_base;
 
     public function __construct()
     {
         $this->base = "https://api.zarinpal.com/pg";
+        $this->payment_base = "https://www.zarinpal.com/pg";
         $this->merchantId = env('ZARINPAL_MERCHANTID');
     }
 
@@ -43,19 +45,22 @@ class zarinPal implements PaymentInterface
             return ["status" => 1, "error" => "cURL Error #:" . $err];
         } else {
             if (!empty($result["data"]) && $result["data"]["code"] == 100) {
-                return ["status" => 0, 'url' => $this->base . '/StartPay/' . $result["data"]["authority"]];
+                return ["status" => 0, 'url' => $this->payment_base . '/StartPay/' . $result["data"]["authority"]];
             } else {
                 return ["status" => 1, "error" => 'ERR: ' . $result["errors"]["code"]];
             }
         }
     }
 
-    public function payVerify($authority, $amount)
+    public function payVerify($data)
     {
+        $authority = $data['authority'];
+        $amount = $data['amount'];
+
         $data = [
             'merchant_id' => $this->merchantId,
             'authority'   => $authority,
-            'amount'      => $amount,
+            'amount'      => $amount * 10,
         ];
         $jsonData = json_encode($data);
         $ch = curl_init($this->base . '/v4/payment/verify.json');
@@ -71,9 +76,9 @@ class zarinPal implements PaymentInterface
         $err = curl_error($ch);
         curl_close($ch);
         $result = json_decode($result, true);
-        if (!empty($result["data"]) && $result["data"]["code"] == 100) {
-            return ["status" => 0, 'data' => $result["data"]];
 
+        if (!empty($result["data"]) && ($result["data"]["code"] == 100 || $result["data"]["code"] == 101)) {
+            return ["status" => 0, 'data' => $result["data"]];
         }
         if ($err) {
             return ["status" => 1, "error" => 'ERR: ' . $err];

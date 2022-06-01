@@ -84,11 +84,19 @@
                                             <td>نقش:</td>
                                             <td>{{$user->role->title}}</td>
                                         </tr>
+                                        <tr>
+                                            <td>تعداد سفارش:</td>
+                                            <td>
+                                                <a href="{{route('admin.order.user',$user->id)}}">{{ $user->orders ? $user->orders->count() : 0}}</a>
+                                            </td>
+                                        </tr>
                                     </table>
                                 </div>
                                 <div class="panel-footer">
                                     <a href="#edit" class="btn btn-warning" data-toggle="tab" title="ویرایش پروفایل"
                                        tooltip><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('admin.order.user',$user->id)}}" class="btn btn-warning" title="سفارشات"
+                                       tooltip><i class="fa fa-list"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +118,7 @@
                                         <h3 class="margin">{{$user->full_name}}</h3>
                                         <address>
                                             <p><strong>{{$user->role->title}}</strong> در <strong><a
-                                                        href="{{route('admin.index')}}"> nitro</a></strong></p>
+                                                            href="{{route('admin.index')}}"> nitro</a></strong></p>
                                         </address>
                                     </div>
                                 </div>
@@ -163,7 +171,7 @@
                                             <select id="role" name="role" class="form-control parsley-validated">
                                                 @foreach($roles as $role)
                                                     <option
-                                                        value="{{ $role->id }}" {{ (old('role')  == $role->id ? "selected" : ($user->role->id == $role->id ? "selected" : "")) }}>{{ $role->title }}
+                                                            value="{{ $role->id }}" {{ (old('role')  == $role->id ? "selected" : ($user->role->id == $role->id ? "selected" : "")) }}>{{ $role->title }}
                                                         ({{$role->name}})
                                                     </option>
                                                 @endforeach()
@@ -185,7 +193,7 @@
                                         <span popover="" data-placement="top" data-trigger="hover"
                                               data-content="گذرواژه باید حداقل 8 حرف و شامل حروف کوچک، حروف بزرگ و اعداد و کاراکترهای خاص باشد"
                                               data-original-title="" title=""><i
-                                                class="fa fa-question-circle"></i></span>
+                                                    class="fa fa-question-circle"></i></span>
 
                                         <input id="password" name="password" value="{{ old('password') }}"
                                                placeholder="گذرواژه" type="password" class="form-control">
@@ -205,9 +213,9 @@
                                         <span popover="" data-placement="top" data-trigger="hover"
                                               data-content="گذرواژه باید حداقل 8 حرف و شامل حروف کوچک، حروف بزرگ و اعداد و کاراکترهای خاص باشد"
                                               data-original-title="" title=""><i
-                                                class="fa fa-question-circle"></i></span>
+                                                    class="fa fa-question-circle"></i></span>
 
-                                        <input  id="password_confirmation" name="password_confirmation"
+                                        <input id="password_confirmation" name="password_confirmation"
                                                value="{{ old('password_confirmation') }}" placeholder="گذرواژه"
                                                type="password" class="form-control">
                                         @if ($errors->has('password_confirmation'))
@@ -362,7 +370,7 @@
                     break;
             }
             {{session()->forget('notifications')}}
-                @endif
+                    @endif
         });
     </script>
 @endsection

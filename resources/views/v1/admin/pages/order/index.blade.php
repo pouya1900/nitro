@@ -33,38 +33,62 @@
                         @if(count($orders))
                             <div class="panel-body">
                                 <h2>{{$subSequence['title']}}</h2><br/>
-                                <table id="example" class="table table-condensed table-hover table-striped table-responsive data-table">
+                                <table id="example"
+                                       class="table table-condensed table-hover table-striped table-responsive data-table">
                                     <thead>
                                     <tr>
-                                        <th data-column-id="id" >شناسه</th>
-                                        <th data-column-id="order_number" >شماره سفارش</th>
+                                        <th data-column-id="id">شناسه</th>
+                                        <th data-column-id="order_number">شماره سفارش</th>
                                         <th data-column-id="mobile">موبایل</th>
-                                        <th data-column-id="user">کاربر</th>
-                                        <th data-column-id="is_gift">هدیه به کاربر</th>
-                                        <th data-column-id="order">بسته موسیقی</th>
-                                        <th data-column-id="total_price">قیمت کل</th>
-                                        <th data-column-id="descount_price">تخفیف</th>
+                                        <th data-column-id="product">محصول</th>
+                                        <th data-column-id="link">لینک</th>
+                                        <th data-column-id="count">تعداد</th>
+                                        <th data-column-id="total_price">قیمت</th>
                                         <th data-column-id="issuccess">وضعیت</th>
+                                        <th data-column-id="issuccess_payment">وضعیت پرداخت</th>
                                         <th data-column-id="createdat">زمان ایجاد</th>
-                                        <th class="my_commands" data-column-id="commands" data-sortable="false" style="text-align: center">عملیات</th>
+                                        <th class="my_commands" data-column-id="commands" data-sortable="false"
+                                            style="text-align: center">عملیات
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($orders as $row)
                                         <tr class="clickable-row" data-url="{{route('admin.order.show', $row->id)}}">
                                             <td>{{ $loop->index+1 }}</td>
-                                            <td>{{ $row->order_number }}</td>
-                                            <td>@if(!empty($row->user))<a href="{{ route('admin.user.show', $row->user->id) }}">{{ $row->user->mobile }}</a>@else حذف شده @endif</td>
-                                            <td>@if(!empty($row->user))<a href="{{ route('admin.user.show', $row->user->id) }}">{{ $row->user->full_name }}</a>@else حذف شده @endif</td>
-                                            <td>@if(!empty($row->giftUser))<a href="{{ route('admin.user.show', $row->giftUser->id) }}">{{ $row->giftUser->mobile }}</a>@else عدم هدیه @endif</td>
-                                            <td>@if(!empty($row->package))<a href="{{ route('admin.package.show', $row->package->id) }}">{{ $row->package->short_title }}</a>@else حذف شده @endif</td>
-                                            <td>{{ $row->total_price_toman}}</td>
-                                            <td>{{ $row->discount_price_toman }}</td>
-                                            <td>@if($row->status->name == 'completed')<span style="color: green">{{$row->status->title}}</span>@else<span style="color: RED">{{ $row->status->title }}</span>@endif</td>
+                                            <td>{{ $row->tracking_number }}</td>
+                                            <td>@if(!empty($row->user))<a
+                                                        href="{{ route('admin.user.show', $row->user->id) }}">{{ makeMobileByZero($row->user->mobile) }}</a>@else
+                                                    حذف شده @endif</td>
+                                            <td>@if(!empty($row->product))<a
+                                                        href="{{ route('admin.product.show', $row->product->id) }}">{{ $row->product->name }}</a>@else
+                                                    حذف شده @endif</td>
+                                            <td>{{ $row->link}}</td>
+                                            <td>{{ $row->count}}</td>
+                                            <td>{{ $row->price}}</td>
+                                            <td>@if($row->status ==1)
+                                                    <span style="color: green">completed</span>
+                                                @elseif($row->status ==-1)
+                                                    <span style="color: RED">cancelled</span>
+                                                @else
+                                                    <span style="color: yellow">pending</span>
+                                                @endif
+                                            </td>
+                                            <td>@if($row->payed==1)
+                                                    <span style="color: green">payed</span>
+                                                @else
+                                                    <span style="color: RED">not payed</span>
+                                                @endif
+                                            </td>
                                             <td>{{ $row->jalali_admin_created_at}}</td>
                                             <td>
                                                 @include('v1.admin.includes.page-table-buttons', [
                                                 'table_show'=>['route' => 'admin.order.show', 'id' => $row->id]])
+                                                @include('v1.admin.includes.page-table-buttons', [
+                                                'table_edit'=>['route' => 'admin.order.edit', 'id' => $row->id],
+                                                ])
+                                                @include('v1.admin.includes.page-table-buttons', ['table_delete' => ['route' => 'admin.order.delete', 'id' => $row->id]])
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -88,7 +112,7 @@
 @section('custom_script')
     @include('v1.admin.includes.datatable-scripts')
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             @if(session()->has('notifications.message'))
             $('#toast-container').remove();
             toastr.options = {
@@ -109,7 +133,7 @@
                 "hideMethod": "fadeOut"
             }
             var type = "{{ session()->get('notifications.alert_type', 'info') }}";
-            switch(type){
+            switch (type) {
                 case 'info':
                     toastr.info("{{ session()->get('notifications.message') }}");
                     break;
@@ -127,7 +151,7 @@
                     break;
             }
             @endif
-            {{session()->forget('notifications')}}
+                    {{session()->forget('notifications')}}
 
         });
     </script>

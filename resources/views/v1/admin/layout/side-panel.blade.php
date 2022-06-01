@@ -210,6 +210,18 @@
                     </li>
                 @endif
 
+                @if(Auth::user()->hasPermission(['product.*', '*']))
+                    <li class="has-sub">
+                        <a>
+                            <i class="fa fa-credit-card"></i>
+                            سفارش ها
+                        </a>
+                        <ul>
+                            <li><a href="{{ route('admin.order.index') }}">مدیریت سفارش ها</a></li>
+                        </ul>
+                    </li>
+                @endif
+
 
                 @if(Auth::user()->hasPermission(['user.*', '*']))
                 <!-- Users -->
@@ -221,8 +233,6 @@
                         <ul>
                             <li><a href="{{route('admin.user.all')}}">همه کاربران</a></li>
                             <li><a href="{{route('admin.user.all', 'standardUser')}}">کاربران عضو</a></li>
-                            <li><a href="{{route('admin.user.all', 'adminUser')}}">مدیرها</a></li>
-                            <li><a href="{{route('admin.user.create')}}">افزودن کاربر</a></li>
                         </ul>
                     </li>
                 @endif
